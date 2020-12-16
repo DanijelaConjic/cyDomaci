@@ -4,7 +4,7 @@ describe('register testovi',() => {
         })
     })
 
-         it('click on register', () => {
+        it('click on register', () => {
         cy.visit("/")
         cy.get(".nav-link").eq(2).click()
         })
@@ -19,7 +19,7 @@ describe('register testovi',() => {
             cy.get('#password-confirmation').type('test123123')
             cy.get('[type="checkbox"]').check()
             cy.get('button').click()
-            //cy.wait(500)
+            
         })
 
         it('registration with non-validation credentials', () => {
@@ -27,26 +27,26 @@ describe('register testovi',() => {
             cy.get("a[href='/register']").click()
             cy.get('#first-name').type('Danijela')
             cy.get('#last-name').type('Conjic')
-            cy.get('#email').type('dacatest.com')
+            cy.get('#email').type('dacatest.com')//ocekuje se validaciona poruka da email mora sadrzati '@'
             cy.get('#password').type('test123123')
             cy.get('#password-confirmation').type('test123123')
             cy.get('[type="checkbox"]').check()
             cy.get('button').click()
-            //cy.wait(500)
+            
         })
 
 
-        it.only('registration with non-validation credentials', () => {
+        it('registration with non-validation credentials', () => {
             cy.visit("/")
             cy.get("a[href='/register']").click()
             cy.get('#first-name').type('Danijela')
             cy.get('#last-name').type('Conjic')
             cy.get('#email').type('daca@test.com')
-            cy.get('#password').type('test1231')
+            cy.get('#password').type('test1231')//ocekuje se validaciona poruka za pogresan password 
             cy.get('#password-confirmation').type('test123123')
             cy.get('[type="checkbox"]').check()
             cy.get('button').click()
-            //cy.wait(500)
+            
         })
            
         it('expect empty field of email', () => {
@@ -54,7 +54,7 @@ describe('register testovi',() => {
             cy.get("a[href='/register']").click()
             cy.get('#first-name').type('Danijela')
             cy.get('#last-name').type('Conjic')
-            //cy.get('#email').type('daca1@test.com')
+            cy.get('#email').invoke('val')//ocekuje se validaciona poruka da je polje email prazno
             cy.get('#password').type('test123123')
             cy.get('#password-confirmation').type('test123123')
             cy.get('[type="checkbox"]').check()
@@ -68,13 +68,13 @@ describe('register testovi',() => {
             cy.get('#first-name').type('Danijela')
             cy.get('#last-name').type('Conjic')
             cy.get('#email').type('daca@test.com')
-            //cy.get('#password').type('test123123')
+            cy.get('#password').invoke('val')//ocekuje se validaciona poruka da je polje password prazno
             cy.get('#password-confirmation').type('test123123')
             cy.get('[type="checkbox"]').check()
             cy.get('button').click()
         }
         )
-        it('the checkbox is not marked', () => {
+        it.only('the checkbox is not marked', () => {
             cy.visit("/")
             cy.get("a[href='/register']").click()
             cy.get('#first-name').type('Danijela')
@@ -82,7 +82,7 @@ describe('register testovi',() => {
             cy.get('#email').type('daca8@test.com')
             cy.get('#password').type('test123123')
             cy.get('#password-confirmation').type('test123123')
-            //cy.get('[type="checkbox"]').check()
+            cy.get('[type="checkbox"]').click()   ///ocekuje se validaciona poruka da checkbox mora biti cekiran
             cy.get('button').click()
         }
         )
